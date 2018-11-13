@@ -24,4 +24,20 @@ describe CalculatorService do
                                                                       ['which', 2],
                                                                       ['children', 2]])
   end
+
+  it 'can count the syllables a word' do
+    expect(calculator.syllables_in_word('transparent')).to eq(3)
+  end
+
+  it 'can count the syllables in some text' do
+    expect(calculator.syllables_count(hard_times_text)).to eq(98)
+  end
+
+  it 'can count the number of sentences' do
+    expect(calculator.sentences_count(hard_times_text)).to eq(7)
+  end
+
+  it 'can clalculate a readability score' do
+    expect(calculator.readability(hard_times_text)).to eq(2)
+  end
 end

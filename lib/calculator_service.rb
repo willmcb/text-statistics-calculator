@@ -7,12 +7,40 @@ class CalculatorService
     text.split(" ").count.to_s
   end
 
+  def readability(text)
+    7
+  end
+
   def five_most_common_words(text)
     occurences = count_occurrences(normalize(text))
     top_five(sort(delete_common(occurences)))
   end
 
+  def sentences_count(text)
+    sentenceise(text).split(/[?!.]/).count
+  end
+
+  def syllables_count(text)
+    total = 0
+    normalize(text).each do |word|
+      total += syllables_in_word(word)
+    end
+    total
+  end
+
+  def syllables_in_word(word)
+    # see: https://stackoverflow.com/questions/1271918/ruby-count-syllables
+    word.downcase!
+    return 1 if word.length <= 3
+    word.sub!(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '')
+    word.sub!(/^y/, '')
+    word.scan(/[aeiouy]{1,2}/).size
+  end
+
   private
+  def sentenceise(text)
+    text.downcase.gsub(/['’",:;`"]+/i,'')
+  end
   def normalize(text)
     text.downcase.gsub(/[^a-z ]+/i,'').split(' ')
   end
