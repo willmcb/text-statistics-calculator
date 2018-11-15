@@ -1,11 +1,11 @@
 require 'sinatra/base'
 
-class App < Sinatra::Application
+class Statext < Sinatra::Application
   set :sessions, true
   set :foo, 'bar'
 
   get '/' do
-    'Hello world!'
+    erb(:index)
   end
 
   run! if app_file == $0

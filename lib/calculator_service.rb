@@ -1,14 +1,13 @@
+require 'flesch_kincaid'
+
 class CalculatorService
-  def initialize
-   @common_words =  %w(and the is i a an but for or of so to on in if as)
+
+  def readability(text)
+    FleschKincaid.read(text)
   end
 
   def word_count(text)
-    text.split(" ").count.to_s
-  end
-
-  def readability(text)
-    7
+    text.split(" ").count
   end
 
   def five_most_common_words(text)
@@ -41,6 +40,7 @@ class CalculatorService
   def sentenceise(text)
     text.downcase.gsub(/['’",:;`"]+/i,'')
   end
+
   def normalize(text)
     text.downcase.gsub(/[^a-z ]+/i,'').split(' ')
   end

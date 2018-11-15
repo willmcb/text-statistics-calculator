@@ -1,5 +1,10 @@
 require 'rack/test'
 require 'rspec'
+require 'capybara'
+require 'capybara/rspec'
+require_relative '../lib/Statext'
+
+Capybara.app = Statext
 
 ENV['RACK_ENV'] = 'test'
 
@@ -19,6 +24,7 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
+  config.include Capybara::DSL
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
 end
