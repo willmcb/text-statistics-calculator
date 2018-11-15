@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Welcome to Statext</title>
+  </head>
+  <body>
+    <h1>Results:</h1>
+    <p><%= @text %></p>
+    <br>
+    <h2>This text is <%= @results.notes.downcase %></h2>
+    <h2>It has a raw readability score of <%= @results.score %></h2>
+    <h2>It would be easily read by the average <%= @results.grade %> student</h2>
+    <a href="/">Click here to check more text</a>
+  </body>
+</html>

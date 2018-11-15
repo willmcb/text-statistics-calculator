@@ -38,7 +38,7 @@ describe CalculatorService do
   end
 
   it 'can clalculate a readability score' do
-    result = calculator.readability(hard_times_text)
+    result = CalculatorService.readability(hard_times_text)
     expect(result.score).to eq(74.81)
     expect(result.grade).to eq("7th grade")
     expect(result.notes).to eq("Fairly easy to read.")

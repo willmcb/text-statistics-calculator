@@ -2,7 +2,7 @@ require 'flesch_kincaid'
 
 class CalculatorService
 
-  def readability(text)
+  def self.readability(text)
     FleschKincaid.read(text)
   end
 
