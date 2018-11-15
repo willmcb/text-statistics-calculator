@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8">
     <title>Welcome to Statext</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="assets/css/bootstrap.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   </head>
   <body>
     <h2>This text is <%= @results.notes.downcase %></h2>
     <p><%= @text %></p>
     <p><b>Word count: </b><em><%= @results.word_count %></em></p>
-    <h3>It is <%= @results.sentences %> sentences in length, has a total syllable count of <%= @results.syllables %>, and a raw readability score of <%= @results.score %>.</h3>
-    <h3>It would be easily read by the average <%= @results.grade %> student.</h3>
+    <p>It is <b><%= @results.sentences %></b> sentences in length, has a total syllable count of <b><%= @results.syllables %><b>, and a raw readability score of <b><%= @results.score %></b>.</p>
+    <p>It would be easily read by the average <%= @results.grade %> student.</p>
     <a href="/">Click here to check more text</a>
   </body>
 </html>
