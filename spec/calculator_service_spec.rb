@@ -17,14 +17,6 @@ describe CalculatorService do
     expect(calculator.word_count(hard_times_text)).to eq(77)
   end
 
-  #it 'can calculate the ten most common words in some text' do
-  #  expect(calculator.five_most_common_words(hard_times_text)).to eq([['facts', 5],
-  #                                                                    ['else', 3],
-  #                                                                    ['nothing', 3],
-  #                                                                    ['which', 2],
-  #                                                                    ['children', 2]])
-  #end
-
   it 'can count the syllables a word' do
     expect(calculator.syllables_in_word('transparent')).to eq(3)
   end
