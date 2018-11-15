@@ -6,6 +6,7 @@ class Statext < Sinatra::Application
   set :foo, 'bar'
 
   get '/' do
+    session.clear
     erb(:index)
   end
 

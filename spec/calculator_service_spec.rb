@@ -14,19 +14,15 @@ describe CalculatorService do
                 "to Facts, sir!’"}
 
   it 'can calculate the wordcount of some text' do
-    expect(calculator.word_count(hard_times_text)).to eq(77)
-  end
-
-  it 'can count the syllables a word' do
-    expect(calculator.syllables_in_word('transparent')).to eq(3)
+    expect(CalculatorService.word_count(hard_times_text)).to eq(77)
   end
 
   it 'can count the syllables in some text' do
-    expect(calculator.syllables_count(hard_times_text)).to eq(98)
+    expect(CalculatorService.syllables_count(hard_times_text)).to eq(98)
   end
 
   it 'can count the number of sentences' do
-    expect(calculator.sentences_count(hard_times_text)).to eq(7)
+    expect(CalculatorService.sentences_count(hard_times_text)).to eq(7)
   end
 
   it 'can clalculate a readability score' do

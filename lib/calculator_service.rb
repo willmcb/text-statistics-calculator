@@ -1,25 +1,28 @@
 require 'flesch_kincaid'
-
+require_relative 'results_wrapper'
 class CalculatorService
 
   def self.readability(text)
-    FleschKincaid.read(text)
+    fk_results = FleschKincaid.read(text)
+    results = ResultsWrapper.new
+    results.score = fk_results.score
+    results.grade = fk_results.grade
+    results.notes = fk_results.notes
+    results.word_count = word_count(text)
+    results.syllables = syllables_count(text)
+    results.sentences = sentences_count(text)
+    results
   end
 
-  def word_count(text)
+  def self.word_count(text)
     text.split(" ").count
   end
 
-  def five_most_common_words(text)
-    occurences = count_occurrences(normalize(text))
-    top_five(sort(delete_common(occurences)))
-  end
-
-  def sentences_count(text)
+  def self.sentences_count(text)
     sentenceise(text).split(/[?!.]/).count
   end
 
-  def syllables_count(text)
+  def self.syllables_count(text)
     total = 0
     normalize(text).each do |word|
       total += syllables_in_word(word)
@@ -27,7 +30,7 @@ class CalculatorService
     total
   end
 
-  def syllables_in_word(word)
+  def self.syllables_in_word(word)
     # see: https://stackoverflow.com/questions/1271918/ruby-count-syllables
     word.downcase!
     return 1 if word.length <= 3
@@ -37,30 +40,12 @@ class CalculatorService
   end
 
   private
-  def sentenceise(text)
-    text.downcase.gsub(/['’",:;`"]+/i,'')
+  def self.sentenceise(text)
+    text.downcase.gsub(/['’,:;`"]+/i,'')
   end
 
-  def normalize(text)
+  def self.normalize(text)
     text.downcase.gsub(/[^a-z ]+/i,'').split(' ')
-  end
-
-  def count_occurrences(words)
-    words.each_with_object(Hash.new(0)) { |e, h| h[e] += 1 }
-  end
-
-  def delete_common(occurences)
-    occurences.delete_if do |k, v|
-      @common_words.include?(k.to_s)
-    end
-  end
-
-  def sort(occurences)
-    occurences.sort_by{ |k,v| v }.reverse
-  end
-
-  def top_five(occurences)
-    occurences[0..4]
   end
 
 end
